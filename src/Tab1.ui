@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Tab1</class>
+ <widget class="QWidget" name="Tab1">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>718</width>
+    <height>310</height>
+   </rect>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0">
+   <item row="1" column="1">
+    <widget class="QLCDNumber" name="carrier"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>载波频率：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="direction">
+     <property name="text">
+      <string>正转</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>设定频率：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLCDNumber" name="output_freq">
+     <property name="smallDecimalPoint">
+      <bool>true</bool>
+     </property>
+     <property name="digitCount">
+      <number>4</number>
+     </property>
+     <property name="segmentStyle">
+      <enum>QLCDNumber::SegmentStyle::Flat</enum>
+     </property>
+     <property name="value" stdset="0">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="intValue" stdset="0">
+      <number>0</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>输出频率：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLCDNumber" name="target_freq">
+     <property name="digitCount">
+      <number>4</number>
+     </property>
+     <property name="segmentStyle">
+      <enum>QLCDNumber::SegmentStyle::Flat</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="stopButton">
+     <property name="text">
+      <string>停止</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QSlider" name="targetSlider">
+     <property name="styleSheet">
+      <string notr="true">
+QSlider::add-page:horizontal {
+    background: transparent;
+}
+
+QSlider::sub-page:horizontal {
+    background: transparent;
+}
+
+
+QSlider::groove:horizontal {
+    background: white;
+    position: absolute; /* absolutely position 4px from the left and right of the widget. setting margins on the widget should work too... */
+    left: 4px; right: 4px;
+}
+
+QSlider::handle:horizontal {
+    height: 10pt;
+    background: green;
+    margin: 0 -4px; /* expand outside the groove */
+}
+</string>
+     </property>
+     <property name="minimum">
+      <number>-10000</number>
+     </property>
+     <property name="maximum">
+      <number>10000</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="pageStep">
+      <number>100</number>
+     </property>
+     <property name="tracking">
+      <bool>true</bool>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="invertedAppearance">
+      <bool>false</bool>
+     </property>
+     <property name="invertedControls">
+      <bool>false</bool>
+     </property>
+     <property name="tickPosition">
+      <enum>QSlider::TickPosition::TicksBothSides</enum>
+     </property>
+     <property name="tickInterval">
+      <number>1</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
