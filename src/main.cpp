@@ -5,8 +5,6 @@
 #include "mainwindow.hpp"
 #include <QDebug>
 
-#include "vfd_ctl.hpp"
-
 static const char desktop_file_content[] = R"ss([Desktop Entry]
 Categories=Development;Electronics;
 Comment=MiniVFD 的上位机
@@ -47,12 +45,7 @@ int main(int argc, char* argv[])
     QIcon ico(":/images/res/logo.png");
     app.setWindowIcon(ico);
 
-    VFDCtrl vfd_ctrl;
-
     MainWindow mywin;
-
-    QObject::connect(mywin.tab, SIGNAL(set_target(float)), &vfd_ctrl, SLOT(set_target(float)));
-
 
     mywin.setWindowIcon(ico);
 

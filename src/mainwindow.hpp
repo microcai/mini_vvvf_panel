@@ -2,9 +2,10 @@
 #pragma once
 
 #include <QObject>
+#include <QActionGroup>
 #include <QMainWindow>
 #include "awaitable.hpp"
-#include <QSerialPort>
+#include "vfd_ctl.hpp"
 
 #include "ui_mainwindow.h"
 #include "mainwindow.moc"
@@ -21,8 +22,17 @@ public Q_SLOTS:
 
     void on_action_About_Qt_triggered();
 
+    void SelectPort(QAction*);
+    void update_menuC(QList<QSerialPortInfo>);
+
+Q_SIGNALS:
+    void RequrestPort(QSerialPortInfo);
+
 private:
     QTimer m_sendtimer;
-    QSerialPort m_uart;
+    VFDCtrl vfd_ctrl;
+
+    QMap<QSerialPortInfo, QAction*> uart_ports_menu;
+    QActionGroup ports_group;
 };
 

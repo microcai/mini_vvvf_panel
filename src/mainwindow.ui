@@ -25,7 +25,7 @@
         <string notr="true">主面板</string>
        </attribute>
       </widget>
-    </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -35,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>807</width>
-     <height>30</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_H">
@@ -45,6 +45,13 @@
     <addaction name="action_About"/>
     <addaction name="action_About_Qt"/>
    </widget>
+   <widget class="QMenu" name="menu_C">
+    <property name="title">
+     <string>连接(&amp;C)</string>
+    </property>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menu_C"/>
    <addaction name="menu_H"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
