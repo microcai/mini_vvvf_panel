@@ -8,7 +8,6 @@
 #include "vfd_ctl.hpp"
 
 #include "ui_mainwindow.h"
-#include "mainwindow.moc"
 
 class MainWindow : public QMainWindow, public Ui_MainWindow
 {
