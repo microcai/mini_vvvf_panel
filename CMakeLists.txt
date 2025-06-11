@@ -24,7 +24,7 @@ qt_standard_project_setup()
 
 include_directories(include)
 include_directories(src)
-include_directories(libs/qtcoro)
+add_subdirectory(libs/qtcoro)
 
 qt_add_executable(vfd_panel
     src/mainwindow.ui
@@ -40,7 +40,7 @@ qt_add_executable(vfd_panel
     src/vfd_ctl.cpp
 )
 
-target_link_libraries(vfd_panel PRIVATE Qt6::Widgets Qt6::SerialPort)
+target_link_libraries(vfd_panel PRIVATE Qt6::Widgets Qt6::SerialPort qtcoro)
 
 if (MSVC)
 target_link_options(vfd_panel PRIVATE "/NODEFAULTLIB")

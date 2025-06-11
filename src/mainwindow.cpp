@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(&ports_group, SIGNAL(triggered(QAction*)), this, SLOT(SelectPort(QAction*)));
 
     connect(this, SIGNAL(RequrestPort(QSerialPortInfo)), &vfd_ctrl, SLOT(OpenPort(QSerialPortInfo)));
+
+    connect(&vfd_ctrl, SIGNAL(vfd_info_update(float, float, int)), tab, SLOT(update_vfd_info(float, float, int)));
 }
 
 MainWindow::~MainWindow(){}

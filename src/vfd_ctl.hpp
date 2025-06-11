@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include "awaitable.hpp"
 
 class VFDCtrl : public QObject
 {
@@ -24,6 +25,11 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void uart_list(QList<QSerialPortInfo>);
+
+    void vfd_info_update(float cur_freq, float request_target, int pwm_freq);
+
+protected:
+    ucoro::awaitable<void> serial_reader_thread();
 
 private:
     QTimer  m_alive_timer;

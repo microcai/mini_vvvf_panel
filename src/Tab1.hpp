@@ -18,6 +18,7 @@ Q_SIGNALS:
 public Q_SLOTS:
     void on_targetSlider_valueChanged(int);
     void on_stopButton_pressed();
+    void update_vfd_info(float cur_freq, float request_target, int pwm_freq);
 
 private:
     qreal freq1, freq2, freq;
