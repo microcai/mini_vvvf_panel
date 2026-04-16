@@ -43,7 +43,7 @@ qt_add_executable(vfd_panel
     src/BLEPickerDialog.cpp
 )
 
-target_link_libraries(vfd_panel PRIVATE Qt6::Widgets Qt6::SerialPort qtcoro)
+target_link_libraries(vfd_panel PRIVATE Qt6::Widgets Qt6::SerialPort Qt6::Bluetooth qtcoro)
 
 if (MSVC)
 target_link_options(vfd_panel PRIVATE "/NODEFAULTLIB")
