@@ -109,7 +109,7 @@ void VFDCtrl::setBaudRate(int baud_rate)
 struct vfd_info_buffer
 {
     char head;
-    char vfd_state;
+    char vfd_state; // 位状态。1位为运行状态，2位为 pwm 载波调制是否同步，3 位 指示变频器的当前频率是否已经追上设定频率
     uint16_t pwm_freq;
     uint8_t FreqAndTarget[5]; // 0.01 分辨率的当前频率和目标。20bit 每个字段
     uint8_t CRC;
@@ -182,7 +182,7 @@ ucoro::awaitable<void> VFDCtrl::serial_reader_thread()
 
                 auto freq_and_target = unpack_40bit(info->FreqAndTarget);
 
-                Q_EMIT vfd_info_update(freq_and_target.first/100.0f, freq_and_target.second/100.0f, info->pwm_freq);
+                Q_EMIT vfd_info_update(freq_and_target.first/100.0f, freq_and_target.second/100.0f, info->pwm_freq, info->vfd_state);
 
             };
 

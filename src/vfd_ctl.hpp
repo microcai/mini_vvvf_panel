@@ -28,7 +28,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void uart_list(QList<QSerialPortInfo>);
 
-    void vfd_info_update(float cur_freq, float request_target, int pwm_freq);
+    void vfd_info_update(float cur_freq, float request_target, int pwm_freq, char vfd_state);
 
 protected:
     ucoro::awaitable<void> serial_reader_thread();

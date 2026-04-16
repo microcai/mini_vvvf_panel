@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 
     connect(this, SIGNAL(RequrestPort(QSerialPortInfo)), &vfd_ctrl, SLOT(OpenPort(QSerialPortInfo)));
 
-    connect(&vfd_ctrl, SIGNAL(vfd_info_update(float, float, int)), tab, SLOT(update_vfd_info(float, float, int)));
+    connect(&vfd_ctrl, SIGNAL(vfd_info_update(float, float, int, char)), tab, SLOT(update_vfd_info(float, float, int, char)));
 
     // 波特率菜单项设置
     baud_rate_group.addAction(action_9600);
