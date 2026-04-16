@@ -50,6 +50,20 @@ MINI VFD 面板控制协议：
 	20bit 目标是一个 20bit 的有符号整数，分辨率为 0.01hz。要设置 50hz 目标就传 target = 5000。
 
 
+4.1. SET_TARGET 命令 详解
+	SET_TARGET 可以设置单一目标。由 4bit 目标类型 + 20bit 目标构成。因此整个数据包为 5 字节。
+	struct {
+		uint8_t header = 0x53;
+		uint8_t target_type:4; // 目标类型, 目前只实现了 类型 0, 也就是频率设置
+		uint8_t target_high4:4; // 目标的最高 4位
+		uint8_t target_mid8; // 目标 中间的8位
+		uint8_t target_low8; // 目标 最低 8位
+		uint8_t checksum;
+	};
+
+	20bit 目标是一个 20bit 的有符号整数，分辨率为 0.01hz。要设置 50hz 目标就传 target = 5000。
+
+
 目前只实现了 SET_TARGET/LINK_TEST。
 
 

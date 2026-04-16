@@ -23,6 +23,7 @@ public Q_SLOTS:
 
     void SelectPort(QAction*);
     void update_menuC(QList<QSerialPortInfo>);
+    void SelectBaudRate(QAction*);
 
 Q_SIGNALS:
     void RequrestPort(QSerialPortInfo);
@@ -33,5 +34,6 @@ private:
 
     QMap<QSerialPortInfo, QAction*> uart_ports_menu;
     QActionGroup ports_group;
+    QActionGroup baud_rate_group;
 };
 

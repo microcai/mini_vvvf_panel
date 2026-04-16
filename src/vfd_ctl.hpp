@@ -23,6 +23,8 @@ public Q_SLOTS:
 
     void OpenPort(QSerialPortInfo);
 
+    void setBaudRate(int baud_rate);
+
 Q_SIGNALS:
     void uart_list(QList<QSerialPortInfo>);
 
@@ -35,5 +37,6 @@ private:
     QTimer  m_alive_timer;
 
     QSerialPort m_uart;
+    int m_baud_rate = 115200;
 
 };

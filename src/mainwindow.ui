@@ -49,6 +49,18 @@
     <property name="title">
      <string>连接(&amp;C)</string>
     </property>
+    <widget class="QMenu" name="menu_BaudRate">
+     <property name="title">
+      <string>波特率</string>
+     </property>
+     <addaction name="action_9600"/>
+     <addaction name="action_19200"/>
+     <addaction name="action_38400"/>
+     <addaction name="action_57600"/>
+     <addaction name="action_115200"/>
+     <addaction name="action_230400"/>
+    </widget>
+    <addaction name="menu_BaudRate"/>
     <addaction name="separator"/>
    </widget>
    <addaction name="menu_C"/>
@@ -63,6 +75,57 @@
   <action name="action_About_Qt">
    <property name="text">
     <string>关于&amp;Qt...</string>
+   </property>
+  </action>
+  <action name="action_9600">
+   <property name="text">
+    <string>9600</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_19200">
+   <property name="text">
+    <string>19200</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_38400">
+   <property name="text">
+    <string>38400</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_57600">
+   <property name="text">
+    <string>57600</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_115200">
+   <property name="text">
+    <string>115200</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_230400">
+   <property name="text">
+    <string>230400</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
    </property>
   </action>
  </widget>

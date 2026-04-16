@@ -13,6 +13,7 @@ bool operator < (const QSerialPortInfo& a, const QSerialPortInfo& b)
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
     , ports_group(this)
+    , baud_rate_group(this)
 {
     setupUi(this);
 
@@ -27,6 +28,20 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(this, SIGNAL(RequrestPort(QSerialPortInfo)), &vfd_ctrl, SLOT(OpenPort(QSerialPortInfo)));
 
     connect(&vfd_ctrl, SIGNAL(vfd_info_update(float, float, int)), tab, SLOT(update_vfd_info(float, float, int)));
+
+    // 波特率菜单项设置
+    baud_rate_group.addAction(action_9600);
+    baud_rate_group.addAction(action_19200);
+    baud_rate_group.addAction(action_38400);
+    baud_rate_group.addAction(action_57600);
+    baud_rate_group.addAction(action_115200);
+    baud_rate_group.addAction(action_230400);
+    baud_rate_group.setExclusive(true);
+
+    connect(&baud_rate_group, SIGNAL(triggered(QAction*)), this, SLOT(SelectBaudRate(QAction*)));
+
+    // 默认选中 115200
+    action_115200->setChecked(true);
 }
 
 MainWindow::~MainWindow(){}
@@ -50,6 +65,34 @@ void MainWindow::SelectPort(QAction* a)
             Q_EMIT RequrestPort(it.key());
             return;
         }
+    }
+}
+
+void MainWindow::SelectBaudRate(QAction* a)
+{
+    if (a == action_9600)
+    {
+        vfd_ctrl.setBaudRate(9600);
+    }
+    else if (a == action_19200)
+    {
+        vfd_ctrl.setBaudRate(19200);
+    }
+    else if (a == action_38400)
+    {
+        vfd_ctrl.setBaudRate(38400);
+    }
+    else if (a == action_57600)
+    {
+        vfd_ctrl.setBaudRate(57600);
+    }
+    else if (a == action_115200)
+    {
+        vfd_ctrl.setBaudRate(115200);
+    }
+    else if (a == action_230400)
+    {
+        vfd_ctrl.setBaudRate(230400);
     }
 }
 

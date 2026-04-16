@@ -85,7 +85,8 @@ void VFDCtrl::OpenPort(QSerialPortInfo port)
     if (m_uart.isOpen())
         m_uart.close();
     m_uart.setPort(port);
-    m_uart.setBaudRate(115200);
+    m_uart.setDataBits(QSerialPort::Data8);
+    m_uart.setBaudRate(m_baud_rate);
     m_uart.setParity(QSerialPort::NoParity);
     m_uart.setStopBits(QSerialPort::OneStop);
     if (m_uart.open(QIODeviceBase::ReadWrite))
@@ -94,6 +95,15 @@ void VFDCtrl::OpenPort(QSerialPortInfo port)
         coro_start(serial_reader_thread());
     }
     m_alive_timer.start();
+}
+
+void VFDCtrl::setBaudRate(int baud_rate)
+{
+    m_baud_rate = baud_rate;
+    if (m_uart.isOpen())
+    {
+        m_uart.setBaudRate(m_baud_rate);
+    }
 }
 
 struct vfd_info_buffer
@@ -134,6 +144,8 @@ std::pair<int, int> unpack_40bit(const uint8_t* FreqAndTarget)
 
 bool check_crc(const QByteArray& array)
 {
+    if (array.size() == 0)
+        return false;
     uint32_t sum = 0;
     for (int i=0; i < array.size() -1 ; i++)
     {
