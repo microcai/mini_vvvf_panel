@@ -118,3 +118,10 @@ void MainWindow::update_menuC(QList<QSerialPortInfo> info)
     }
     // menu_C->addMenu()
 }
+
+void MainWindow::on_action_Use_Bluetooth_Connection_triggered()
+{
+    // 这里将打开蓝牙连接的模态对话框
+    // 对话框内容将在后续实现
+    QMessageBox::information(this, "蓝牙连接", "蓝牙连接对话框将在这里打开");
+}

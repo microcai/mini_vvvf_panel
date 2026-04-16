@@ -46,23 +46,24 @@
     <addaction name="action_About_Qt"/>
    </widget>
    <widget class="QMenu" name="menu_C">
-    <property name="title">
-     <string>连接(&amp;C)</string>
-    </property>
-    <widget class="QMenu" name="menu_BaudRate">
      <property name="title">
-      <string>波特率</string>
+      <string>连接(&amp;C)</string>
      </property>
-     <addaction name="action_9600"/>
-     <addaction name="action_19200"/>
-     <addaction name="action_38400"/>
-     <addaction name="action_57600"/>
-     <addaction name="action_115200"/>
-     <addaction name="action_230400"/>
+     <widget class="QMenu" name="menu_BaudRate">
+      <property name="title">
+       <string>波特率</string>
+      </property>
+      <addaction name="action_9600"/>
+      <addaction name="action_19200"/>
+      <addaction name="action_38400"/>
+      <addaction name="action_57600"/>
+      <addaction name="action_115200"/>
+      <addaction name="action_230400"/>
+     </widget>
+     <addaction name="menu_BaudRate"/>
+     <addaction name="separator"/>
+     <addaction name="action_Use_Bluetooth_Connection"/>
     </widget>
-    <addaction name="menu_BaudRate"/>
-    <addaction name="separator"/>
-   </widget>
    <addaction name="menu_C"/>
    <addaction name="menu_H"/>
   </widget>
@@ -126,6 +127,11 @@
    </property>
    <property name="checkable">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_Use_Bluetooth_Connection">
+   <property name="text">
+    <string>使用蓝牙连接...(&amp;B)</string>
    </property>
   </action>
  </widget>
