@@ -18,7 +18,7 @@ if (MSVC)
     link_libraries(ucrt$<$<CONFIG:Debug>:d>.lib)
 endif(MSVC)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets SerialPort)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets SerialPort Bluetooth)
 
 qt_standard_project_setup()
 
@@ -38,6 +38,9 @@ qt_add_executable(vfd_panel
     src/mainwindow.cpp
     src/main.cpp
     src/vfd_ctl.cpp
+
+    src/BLEPickerDialog.hpp
+    src/BLEPickerDialog.cpp
 )
 
 target_link_libraries(vfd_panel PRIVATE Qt6::Widgets Qt6::SerialPort qtcoro)

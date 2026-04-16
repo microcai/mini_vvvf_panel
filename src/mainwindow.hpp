@@ -20,6 +20,7 @@ public Q_SLOTS:
     void on_action_About_triggered();
 
     void on_action_About_Qt_triggered();
+    void on_action_Use_Bluetooth_Connection_triggered();
 
     void SelectPort(QAction*);
     void update_menuC(QList<QSerialPortInfo>);
