@@ -47,4 +47,5 @@ private:
     bool m_isBLE = false;
 
     void writeData(const char* data, int size);
+    void processVFDData(const QByteArray& read_buffer);
 };

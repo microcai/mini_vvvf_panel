@@ -191,21 +191,7 @@ ucoro::awaitable<void> VFDCtrl::serial_reader_thread()
         co_await qtcoro::coro_delay_ms(2);
 
         QByteArray read_buffer = m_uart.read(32);
-
-        qDebug() << read_buffer.toHex();
-
-        if (!check_crc(read_buffer))
-            continue;
-
-        switch (read_buffer[0] & 0xF0)
-        {
-            case 0x20:
-            {
-                const vfd_info_buffer* info =  (const vfd_info_buffer*)read_buffer.constData();
-                auto freq_and_target = unpack_40bit(info->FreqAndTarget);
-                Q_EMIT vfd_info_update(freq_and_target.first/100.0f, freq_and_target.second/100.0f, info->pwm_freq, info->vfd_state);
-            };
-        }
+        processVFDData(read_buffer);
     }
 }
 
@@ -222,23 +208,27 @@ ucoro::awaitable<void> VFDCtrl::ble_reader_thread()
         }
 
         QByteArray read_buffer = m_ble->read(32);
+        processVFDData(read_buffer);
+    }
+}
 
-        if (read_buffer.isEmpty())
-            continue;
+void VFDCtrl::processVFDData(const QByteArray& read_buffer)
+{
+    if (read_buffer.isEmpty())
+        return;
 
-        qDebug() << "BLE数据:" << read_buffer.toHex();
+    qDebug() << "VFD数据:" << read_buffer.toHex();
 
-        if (!check_crc(read_buffer))
-            continue;
+    if (!check_crc(read_buffer))
+        return;
 
-        switch (read_buffer[0] & 0xF0)
+    switch (read_buffer[0] & 0xF0)
+    {
+        case 0x20:
         {
-            case 0x20:
-            {
-                const vfd_info_buffer* info = (const vfd_info_buffer*)read_buffer.constData();
-                auto freq_and_target = unpack_40bit(info->FreqAndTarget);
-                Q_EMIT vfd_info_update(freq_and_target.first/100.0f, freq_and_target.second/100.0f, info->pwm_freq, info->vfd_state);
-            };
-        }
+            const vfd_info_buffer* info = (const vfd_info_buffer*)read_buffer.constData();
+            auto freq_and_target = unpack_40bit(info->FreqAndTarget);
+            Q_EMIT vfd_info_update(freq_and_target.first/100.0f, freq_and_target.second/100.0f, info->pwm_freq, info->vfd_state);
+        };
     }
 }
