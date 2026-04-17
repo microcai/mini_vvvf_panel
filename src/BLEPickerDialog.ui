@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>蓝牙连接</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QListView" name="deviceList"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
