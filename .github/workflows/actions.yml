@@ -48,9 +48,7 @@ jobs:
       if: startsWith(runner.os, 'Windows')
       shell: bash
       run: |
-        echo "QT_ROOT_DIR=${{ github.workspace }}\\msvc-qt" >> $GITHUB_ENV
-        echo "QT_PLUGIN_PATH=${{ github.workspace }}\\msvc-qt\\plugins" >> $GITHUB_ENV
-        echo "CMAKE_PREFIX_PATH=${{ github.workspace }}\\msvc-qt" >> $GITHUB_ENV
+        echo "Qt6_DIR=${{ github.workspace }}\\msvc-qt\\lib\\cmake\\Qt6" >> $GITHUB_ENV
 
     - name: setup env for cmake to pickup Clang
       if: startsWith(runner.os, 'Linux')
