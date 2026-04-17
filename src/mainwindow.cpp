@@ -1,5 +1,3 @@
-
-
 #include "mainwindow.hpp"
 #include <QMessageBox>
 #include "awaitable.hpp"
@@ -124,5 +122,13 @@ void MainWindow::on_action_Use_Bluetooth_Connection_triggered()
 {
     // 打开蓝牙连接的模态对话框
     BLEPickerDialog dialog(this);
-    dialog.exec();
+    if (dialog.exec() == QDialog::Accepted)
+    {
+        QBluetoothDeviceInfo device = dialog.getSelectedDevice();
+        if (!device.isValid()) {
+            QMessageBox::warning(this, "警告", "未选择有效的蓝牙设备");
+            return;
+        }
+        vfd_ctrl.OpenBLE(device);
+    }
 }

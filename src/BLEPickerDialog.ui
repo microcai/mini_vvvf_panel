@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,13 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QListView" name="deviceList"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButtonConnect">
+     <property name="text">
+      <string>连接</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
