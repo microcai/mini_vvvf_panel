@@ -5,9 +5,9 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QBluetoothDeviceInfo>
-#include <QLowEnergyController>
-#include <QLowEnergyService>
 #include "awaitable.hpp"
+
+class BLEWrapper;
 
 class VFDCtrl : public QObject
 {
@@ -36,30 +36,15 @@ Q_SIGNALS:
 
 protected:
     ucoro::awaitable<void> serial_reader_thread();
-
-private slots:
-    void onDeviceConnected();
-    void onDeviceDisconnected();
-    void onServiceDiscovered(const QBluetoothUuid &serviceUuid);
-    void onServiceScanDone();
-    void onServiceStateChanged(QLowEnergyService::ServiceState state);
-    void onCharacteristicRead(const QLowEnergyCharacteristic &characteristic, const QByteArray &value);
-    void onCharacteristicWritten(const QLowEnergyCharacteristic &characteristic, const QByteArray &value);
-    void onCharacteristicChanged(const QLowEnergyCharacteristic &characteristic, const QByteArray &value);
-    void onServiceError(QLowEnergyService::ServiceError error);
-    void onControllerError(QLowEnergyController::Error error);
+    ucoro::awaitable<void> ble_reader_thread();
 
 private:
     QTimer  m_alive_timer;
 
     QSerialPort m_uart;
-    QLowEnergyController* m_bleController;
-    QLowEnergyService* m_bleService;
-    QLowEnergyCharacteristic m_writeCharacteristic;
-    QLowEnergyCharacteristic m_notifyCharacteristic;
+    BLEWrapper* m_ble;
     int m_baud_rate = 115200;
     bool m_isBLE = false;
-    QBluetoothDeviceInfo m_currentDevice;
 
     void writeData(const char* data, int size);
 };

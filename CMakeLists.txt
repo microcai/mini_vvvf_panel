@@ -41,6 +41,9 @@ qt_add_executable(vfd_panel
 
     src/BLEPickerDialog.hpp
     src/BLEPickerDialog.cpp
+
+    src/BLEWrapper.hpp
+    src/BLEWrapper.cpp
 )
 
 target_link_libraries(vfd_panel PRIVATE Qt6::Widgets Qt6::SerialPort Qt6::Bluetooth qtcoro)
