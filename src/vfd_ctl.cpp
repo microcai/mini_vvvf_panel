@@ -332,7 +332,6 @@ void VFDCtrl::onServiceStateChanged(QLowEnergyService::ServiceState state)
             qDebug() << "BLE连接准备完成，开始数据传输";
             qDebug() << "  写特征:" << m_writeCharacteristic.uuid().toString();
             qDebug() << "  通知特征:" << m_notifyCharacteristic.uuid().toString();
-            coro_start(ble_reader_thread());
             m_alive_timer.start();
         } else {
             qDebug() << "未找到可写特征，无法进行数据传输";
@@ -424,19 +423,6 @@ ucoro::awaitable<void> VFDCtrl::serial_reader_thread()
 
             };
 
-        }
-    }
-}
-
-ucoro::awaitable<void> VFDCtrl::ble_reader_thread()
-{
-    for (;;)
-    {
-        co_await qtcoro::coro_delay_ms(100);
-        
-        // BLE数据通过onCharacteristicChanged槽函数接收，这里保持协程运行即可
-        if (!m_isBLE || !m_bleService) {
-            co_return;
         }
     }
 }

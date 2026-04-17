@@ -36,7 +36,6 @@ Q_SIGNALS:
 
 protected:
     ucoro::awaitable<void> serial_reader_thread();
-    ucoro::awaitable<void> ble_reader_thread();
 
 private slots:
     void onDeviceConnected();
